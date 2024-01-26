@@ -1,0 +1,21 @@
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://210.122.3.31:3306/new_center?serverTimezone=UTC&characterEncoding=EUC-KR&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: devdbsuper2015!@#
+#    username: rlvdms
+#    password: todrkr122
+
+app:
+  log-file-path: "./logs"
+  jwt-secure-key: "fjilawjeflasj!@#42314sdafj234!@#2313"
+  jwt-secure-report-key: "qoweifj#@12afsdfwe#$#3145345$%^#45dg"
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml

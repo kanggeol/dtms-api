@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty name="log-file-path" source="app.log-file-path" />
+
+    <!-- console log setting -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyyMMdd HH:mm:ss.SSS} [%thread] %-3level %logger{5} - %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- file log setting -->
+    <appender name="debugFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <prudent>false</prudent>
+        <file>${log-file-path}/debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log-file-path}/old/debug.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="infoFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <prudent>false</prudent>
+        <file>${log-file-path}/info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log-file-path}/old/info.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="errorFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <prudent>false</prudent>
+        <file>${log-file-path}/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log-file-path}/old/error.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 배포 프로파일이 따른 로깅 방법 설정 -->
+    <springProfile name="local">
+
+        <logger name="jdbc" level="off"/>
+        <logger name="jdbc.sqlonly" level="off"/>
+        <logger name="jdbc.sqltiming" level="debug"/>
+        <logger name="jdbc.audit" level="off"/>
+        <logger name="jdbc.resultset" level="off"/>
+        <logger name="jdbc.resultsettable" level="debug"/>
+        <logger name="jdbc.connection" level="off"/>
+
+
+        <logger name="com.dailystudy" level="debug" />
+
+        <root level="debug">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="debugFileAppender"/>
+            <appender-ref ref="errorFileAppender"/>
+            <appender-ref ref="infoFileAppender"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="dev">
+        <logger name="jdbc" level="off"/>
+        <logger name="jdbc.sqlonly" level="off"/>
+        <logger name="jdbc.sqltiming" level="debug"/>
+        <logger name="jdbc.audit" level="off"/>
+        <logger name="jdbc.resultset" level="off"/>
+        <logger name="jdbc.resultsettable" level="debug"/>
+        <logger name="jdbc.connection" level="off"/>
+
+        <root level="debug">
+            <appender-ref ref="debugFileAppender"/>
+            <appender-ref ref="errorFileAppender"/>
+            <appender-ref ref="infoFileAppender"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="jdbc" level="off"/>
+        <logger name="jdbc.sqlonly" level="off"/>
+        <logger name="jdbc.sqltiming" level="debug"/>
+        <logger name="jdbc.audit" level="off"/>
+        <logger name="jdbc.resultset" level="off"/>
+        <logger name="jdbc.resultsettable" level="debug"/>
+        <logger name="jdbc.connection" level="off"/>
+
+        <logger name="com.dailystudy" level="debug" />
+
+        <root level="debug">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="debugFileAppender"/>
+            <appender-ref ref="errorFileAppender"/>
+            <appender-ref ref="infoFileAppender"/>
+        </root>
+    </springProfile>
+</configuration>
