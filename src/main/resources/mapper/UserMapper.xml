@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dailystudy.dtmsapi.mapper.UserMapper">
+
+    <select id="findByUser" resultType="UserDto">
+        select
+            MId as userId,
+            MPassword as userPW,
+            MName as name
+        from
+            new_center.inp_member
+        where
+            MStatus = '재직'
+          and MId = #{id}
+          and MPassword = PASSWORD(#{password})
+    </select>
+
+    <select id="findByUserId" resultType="UserDto">
+        SELECT
+            MId as userId,
+            MPassword as userPW,
+            MName as name
+        FROM
+            new_center.inp_member
+        WHERE
+            MId = #{id}
+
+    </select>
+
+    <insert id="save" parameterType="UserDto">
+        INSERT INTO user (memberName, password)
+        VALUES ( #{memberName}, #{password} )
+    </insert>
+
+</mapper>

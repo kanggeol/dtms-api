@@ -2,42 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.dailystudy.dtmsapi.mapper.LoginMapper">
-    <select id="employee" parameterType="dbmap" resultType="dbmap">
-        select
-            MNumber as memberNumber,
-            MId as memberId,
-            MOPosition as department
-        from
-            ${dbPrefixName}new_center.inp_member
-        where
-            MStatus = '재직'
-        and MId = #{memberId}
-        and MPassword = PASSWORD(#{password})
-    </select>
 
-    <insert id="insertRefreshToken" parameterType="dbmap">
+    <insert id="insertRefreshToken" parameterType="map">
         insert into common.refreshToken (
             token,
             insertDateTime,
             expirationDateTime,
             ip,
-            memberId
+            userId
         ) values (
             #{token},
             now(),
             date_add(now(), interval 12 hour),
             #{ip},
-            #{memberId}
+            #{userId}
         )
     </insert>
 
-    <select id="refreshToken" parameterType="dbmap" resultType="dbmap">
+    <select id="refreshToken" parameterType="map" resultType="map">
         select
             token,
             insertDateTime,
             expirationDateTime,
             ip,
-            memberId
+            userId
         from
             common.refreshToken
         where

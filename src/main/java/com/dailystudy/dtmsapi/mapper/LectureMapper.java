@@ -1,16 +1,15 @@
 package com.dailystudy.dtmsapi.mapper;
 
-import com.dailystudy.dtmsapi.base.DbList;
-import com.dailystudy.dtmsapi.base.DbMap;
-import com.dailystudy.dtmsapi.model.Lecture;
+import com.dailystudy.dtmsapi.dto.LectureDto;
 import org.apache.ibatis.annotations.Mapper;
-import java.util.*;
+
+import java.util.List;
 
 @Mapper
 public interface LectureMapper {
 
-    DbList selectLectureList();
+    List<LectureDto> selectLectureList();
 
-    Lecture selectLecture(Integer isnumber);
+    LectureDto selectLecture(Integer isnumber);
 
 }

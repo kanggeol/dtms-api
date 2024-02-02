@@ -1,4 +1,4 @@
-package com.dailystudy.dtmsapi.model;
+package com.dailystudy.dtmsapi.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Lecture {
+public class LectureDto {
     private Integer isnumber;
     private String isname;
     private String teacher;

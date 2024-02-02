@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dailystudy.dtmsapi.mapper.LectureMapper">
 
-    <resultMap id="LectureMap" type="com.dailystudy.dtmsapi.model.Lecture">
+    <resultMap id="LectureMap" type="LectureDto">
         <result column="ISNumber" property="isnumber"/>
         <result column="ISName" property="isname"/>
         <result column="MNumber" property="teacher"/>
@@ -17,7 +17,7 @@
 
     <select id="selectLecture" resultMap="LectureMap">
         SELECT ISNumber,ISName,MName,ISLevel
-        FROM Sinp_instruction si
+        FROM new_center.Sinp_instruction si
                  INNER JOIN new_center.inp_member im ON si.MNumber = im.MNumber
         WHERE ISStatus='진행' and si.ACCode='master'
         and ISNumber = #{isnumber}
