@@ -21,7 +21,6 @@ public class LectureController {
 
     @GetMapping("all")
     public List<LectureDto> selectLectureList() throws Exception {
-        log.info("123123333333333333333333333333333");
         return lectureService.selectLectureList();
     }
 

@@ -12,7 +12,6 @@ import com.dailystudy.dtmsapi.security.JwtTokenProvider;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class UserService {
 
     private final UserMapper userMapper;

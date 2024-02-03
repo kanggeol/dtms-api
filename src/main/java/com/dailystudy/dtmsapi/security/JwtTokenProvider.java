@@ -80,10 +80,9 @@ public class JwtTokenProvider {
     public boolean validateToken(String token) {
         try {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-
             return !claims.getBody().getExpiration().before(new Date());
         } catch (SecurityException | MalformedJwtException | IllegalArgumentException exception) {
-            logger.info("잘못된 Jwt 토큰입니다");
+            logger.info("잘못된 또는 지원하지 않는 Jwt 토큰입니다");
         } catch (ExpiredJwtException exception) {
             logger.info("만료된 Jwt 토큰입니다");
         } catch (UnsupportedJwtException exception) {

@@ -1,7 +1,4 @@
 spring:
-  config:
-    activate:
-      on-profile: "local"
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     url: jdbc:log4jdbc:mysql://210.122.3.31:3306/new_center?serverTimezone=UTC&characterEncoding=EUC-KR&zeroDateTimeBehavior=convertToNull
@@ -14,8 +11,8 @@ spring:
   devtools:
     add-properties: false
 
-app:
-  log-file-path: "./logs"
+logging:
+  dir: ./logs
 
 jwt:
   header: Authorization
