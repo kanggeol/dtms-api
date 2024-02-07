@@ -1,7 +1,7 @@
 package com.dailystudy.dtmsapi.service;
 
-import com.dailystudy.dtmsapi.mapper.LectureMapper;
 import com.dailystudy.dtmsapi.dto.LectureDto;
+import com.dailystudy.dtmsapi.mapper.LectureMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -16,7 +16,7 @@ logging:
 
 jwt:
   header: Authorization
-  secret: "fjilawjeflasj!@#42314sdafj234!@#2313"
+  secret: "E/v]Goy<d,F$}Vg-ZM\thOOsPZAILA,'Xq{?wyDHyFI`qpux;ob-j>Ogk<Hn/^Q:"
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

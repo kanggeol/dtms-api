@@ -1,8 +1,6 @@
 package com.dailystudy.dtmsapi.service;
 
-import com.dailystudy.dtmsapi.dto.LoginDto;
 import com.dailystudy.dtmsapi.dto.UserDto;
-import com.dailystudy.dtmsapi.exception.LoginFailedException;
 import com.dailystudy.dtmsapi.exception.UserNotFoundException;
 import com.dailystudy.dtmsapi.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;

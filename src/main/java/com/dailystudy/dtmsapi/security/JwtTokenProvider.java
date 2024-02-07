@@ -2,6 +2,7 @@ package com.dailystudy.dtmsapi.security;
 
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +17,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class JwtTokenProvider {
@@ -25,7 +26,7 @@ public class JwtTokenProvider {
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private long tokenValidTime = 30 * 60 * 1000L;
+    private long tokenValidTime = 30 * 60 * 1000L; //30분
 
     private final UserDetailsService userDetailsService;
     private final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
@@ -36,9 +37,18 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String userId) {
+    public String createToken(String userId, String role) {
         Claims claims = Jwts.claims().setSubject(userId);
+
+//        TODO:유저 role 데이터베이스 생성후에 아래 코드 삭제
+        // role이 null인 경우 "ROLE_USER"로 설정
+        if (role == null) {
+            role = "ROLE_USER";
+        }
+        claims.put("role", role);
         Date now = new Date();
+
+        log.info("claims : " + claims);
 
         return Jwts.builder()
                 .setClaims(claims)
